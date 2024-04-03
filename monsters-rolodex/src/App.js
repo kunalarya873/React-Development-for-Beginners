@@ -6,25 +6,25 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-      name:  'Andrei',
+      monster1:{
+        name:'Linda'
+      },
+      monster2:{
+        name:'Jack'
+      },
+      monster3:{
+        name:'Frank'
+      },
+
+
     }
   }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hi {this.state.name}
-          </p>
-          <button onClick={()=>{
-            this.setState(()=>{
-              return{
-                name:  "Alex"
-              }
-            });
-          }}>Click me</button>
-        </header>
+        <h1>{this.state.monster1.name}</h1>
+        <h1>{this.state.monster2.name}</h1>
+        <h1>{this.state.monster3.name}</h1>
       </div>
     );
   }
