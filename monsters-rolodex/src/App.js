@@ -17,14 +17,9 @@ class App extends Component{
           <p>
             Hi {this.state.name}
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <button onClick={()=>{
+            this.setState({name: 'Yihua'});
+          }}>Click me</button>
         </header>
       </div>
     );
