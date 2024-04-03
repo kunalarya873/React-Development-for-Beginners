@@ -12,10 +12,11 @@ class App extends Component{
   componentDidMount(){
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
-    .then((users) => this.setState(() => {
+    .then((users) => this.setState(
+      () => {
       return {monsters: users}
     },
-    () =>{
+      () => {
       console.log(this.state);
     }
     ));
@@ -23,6 +24,10 @@ class App extends Component{
   render() {
     return (
       <div className="App">
+        <input type='search' className='search-box' placeholder='search Monster' onChange={(event)=>{
+        console.log(event.target.value)
+        }
+        }></input>
         {this.state.monsters.map((monster)=>{
           return<div key={monster.id}>
           <h1>{monster.name}</h1>
