@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SearchBox from './components/search-box/search-box.component';
 import CardList from './components/card-list/card-list.component';
 
 class App extends Component{
@@ -32,12 +33,16 @@ class App extends Component{
     });
     return (
       <div className="App">
-        <input type='search' className='search-box' placeholder='search Monster' onChange={onSearchChange}></input>
         {/* {filteredMonster.map((monster)=>{
           return<div key={monster.id}>
           <h1>{monster.name}</h1>
           </div>
         })} */}
+        <SearchBox 
+        onChangeHandler ={onSearchChange} 
+        placeholder = {'Search Monsters'}
+        className = {'search-box'}
+        />
         <CardList monsters={filteredMonster} />
       </div>
     );
