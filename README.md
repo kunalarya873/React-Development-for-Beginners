@@ -93,6 +93,6 @@ To get started with this project, follow these steps:
 
 <img align="center" src="https://media.licdn.com/dms/image/D4E12AQGmeG3bDuWOgA/article-cover_image-shrink_720_1280/0/1688282331421?e=2147483647&v=beta&t=5DAKzEUi8dK_d1ONVDqgUYnTRQmighfwqBiO2Pt0I7w"></img>
 
-[**Get Started**](https://github.com/kunalarya873/React-Development-for-Beginners) • [**Contributors**](https://github.com/kunalarya873) • [**Resources**](https://github.com/kunalarya873/Python_DSA/blob/main/Data%2BStructures%2Band%2BAlgorithms%2BBootcamp%2Bin%2BPython%2Bslides%2BRemaster.pdf) • [**Join the Discussion**](#)
+[**Get Started**](https://github.com/kunalarya873/React-Development-for-Beginners) • [**Contributors**](https://github.com/kunalarya873) • [**Resources**](https://github.com/kunalarya873/React-Development-for-Beginners/blob/main/Beginning.ReactJS.Foundations.Chris.Minnick.Wiley.9781119685548.EBooksWorld.ir.pdf) • [**Join the Discussion**](#)
 
 Happy coding! 🚀👩‍💻👨‍💻
