@@ -1,29 +1,94 @@
-import './App.css'
+import './App.css';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-const BASE_URL = "http://localhost:9000";
+import SearchResult from './components/SearchResult/SearchResult';
+
+export const BASE_URL = "http://localhost:9000";
 
 function App() {
-
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false)
+  const [filteredData, setFilteredData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [selectedBtn, setSelectedBtn] = useState("all");
 
-  const fetchFoodData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(BASE_URL);
-      const json = await response.json(); // Await the json call
-      setLoading(false);
-      console.log(json);
-      setData(json); // Store the data in state if needed
-    } catch (error) {
-      console.error("Error fetching food data:", error);
+  // useEffect Hook for fetching data
+  useEffect(() => {
+    const fetchFoodData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(BASE_URL);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const json = await response.json();
+        setData(json); // Store the data in state
+        setFilteredData(json);
+      } catch (error) {
+        console.error("Error fetching food data:", error);
+        setError(error.message || "Something went wrong!");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFoodData();
+  }, []);
+
+  const searchFood = (e) => {
+    const searchValue = e.target.value;
+
+    if (searchValue === "") {
+      setFilteredData(data); // Show all data when search is empty
+    } else {
+      const filter = data?.filter((food) => 
+        food.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      setFilteredData(filter);
     }
   };
 
-  useEffect(() => {
-    fetchFoodData(); // Automatically fetch data on component mount
-  }, []);
+  const filteredFood = (type) =>{
+    if (type == 'all'){
+      setFilteredData(data);
+      setSelectedBtn('all');
+      return;
+    }
+    const filter = data?.filter((food) =>
+    food.type.toLowerCase().includes(type.toLowerCase()));
+
+    setFilteredData(filter);
+    setSelectedBtn(type);
+
+  }
+
+  const filteredBtns =[
+    {
+      "name": "All",
+      "type": "all"
+    },
+    {
+      "name": "Breakfast",
+      "type": "breakfast"
+    },
+    {
+      "name": "Lunch",
+      "type": "lunch"
+    },
+    {
+      "name": "Dinner",
+      "type": "dinner"
+    }
+
+  ]
+
+  // Conditional rendering based on loading, error, and data states
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <Container>
@@ -32,20 +97,21 @@ function App() {
           <img src="/Foody Zone.svg" alt="logo" />
         </div>
         <div className="search">
-          <input type="text" placeholder="Search Food..." />
+          <input type="text" onChange={searchFood} placeholder="Search Food..." />
         </div>
       </TopContainer>
       <FilterComponent>
-        <Button>All</Button>
-        <Button>Breakfast</Button>
-        <Button>Lunch</Button>
-        <Button>Dinner</Button>
+        {filteredBtns.map((btn) => (
+          <Button
+          isSelected={selectedBtn == btn.type}
+            key={btn.type}
+            onClick={() => filteredFood(btn.type)}
+          >
+            {btn.name}
+          </Button>
+        ))}
       </FilterComponent>
-      <FoodCardContainer>
-        <FoodCards>
-        {/* You can map over the fetched data and render the food cards here */}
-        </FoodCards>
-      </FoodCardContainer>
+      <SearchResult data={filteredData}/>
     </Container>
   );
 }
@@ -65,7 +131,11 @@ const TopContainer = styled.section`
 
   .logo {
     background-color: #313335;
+    @media(0< width < 600px){
+      margin-top:13px;
+    }
   }
+
 
   .search {
     input {
@@ -77,7 +147,13 @@ const TopContainer = styled.section`
       font-size: 16px;
       padding: 10px;
     }
+    @media(0< width < 600px){
+    margin-top: 0px;
   }
+  }
+  @media(0< width < 600px){
+    flex-direction: column;
+    }
 `;
 
 const FilterComponent = styled.section`
@@ -89,39 +165,20 @@ const FilterComponent = styled.section`
   position: absolute;
   left: calc(50% - 326px/2);
   top: 100px;
+  @media(0< width < 600px){
+    margin-top: 35px;
+  }
 `;
 
-const Button = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+export const Button = styled.button`
   padding: 6px 12px;
-  gap: 10px;
-  background: #FF4343;
+  background: ${({isSelected}) => (isSelected?"#f22f2f": "#ff4343")};
   border-radius: 5px;
   border: none;
   color: white;
-`;
+  cursor: pointer;
 
-const FoodCardContainer = styled.section`
-  height: calc(100vh - 140px);
-  background-image: url("/images/bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding: 30px;
-`;
-
-const FoodCards = styled.section`
-  padding: 30px;
-  box-sizing: border-box;
-  position: relative;
-  width: 340px;
-  height: 167px;
-  left: 0px;
-  top: 0px;
-  background: url(.png), radial-gradient(90.16% 143.01% at 15.32% 21.04%, rgba(165, 239, 255, 0.2) 0%, rgba(110, 191, 244, 0.0447917) 77.08%, rgba(70, 144, 213, 0) 100%);
-  background-blend-mode: overlay, normal;
-  backdrop-filter: blur(13.1842px);
-  border-radius: 19.4467px;
+  &:hover {
+    background: #f22f2f; /* Slightly darker on hover */
+  }
 `;

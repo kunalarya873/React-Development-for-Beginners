@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { createGlobalStyle } from "styled-components";
+import ErrorBoundary from './ErrorBoundary'
 const GlobalStyle = createGlobalStyle`
   *{
     box-sizing: border-box;
@@ -19,7 +20,9 @@ const GlobalStyle = createGlobalStyle`
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+       <ErrorBoundary>
     <GlobalStyle />
     <App />
+    </ErrorBoundary>
   </StrictMode>,
 )
