@@ -10,7 +10,7 @@ import AddandUpdate from "./components/AddandUpdateContact";
 import useDisclouse from "./hooks/useDisclouse";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import NotFoundContact from "./components/NotFoundContact";
 export default function App() {
   const [contacts, setContacts] = useState([]);
   const {isOpen, onClose, onOpen } = useDisclouse();
@@ -18,6 +18,7 @@ export default function App() {
   useEffect(() => {
     const getContacts = async () => {
       try {
+        const contactsSnapshot = await getDocs(collection(db, "contacts"));
         const contactsList = contactsSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -65,9 +66,11 @@ export default function App() {
           <AiFillPlusCircle onClick={onOpen} className="text-white text-5xl cursor-pointer" />
         </div>
         <div className="mt-2 gap-3 flex flex-col">
-          {contacts.map((contact) => (
+          { contacts.length === 0 ? (
+            <NotFoundContact />
+          ) : (contacts.map((contact) => (
             <ContactCard key={contact.id} contact={contact} />
-          ))}
+          )))}
         </div>
       </div>
         <h2 className="text-lg text-center"><AddandUpdate isOpen={isOpen} onClose={onClose}/></h2>
