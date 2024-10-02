@@ -10,7 +10,7 @@ const Topnav = ({ title, onOpen }) => {
           onClick={onOpen} 
           boxSize={6} 
           cursor="pointer" 
-          color="teal.500"
+          color="black"
         />
         <Container display="flex" justifyContent="space-between" alignItems="center" maxW="100%">
           <Heading fontWeight="medium" fontSize="28px">{title}</Heading>
