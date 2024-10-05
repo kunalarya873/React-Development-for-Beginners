@@ -11,11 +11,11 @@ const Dashboard = () => {
         <Grid 
         gridTemplateColumns={{
           base: 'repeat(1, 1fr)',
-          md: 'repeat(2, 1fr)',
+          xl: 'repeat(2, 1fr)',
         }}
         gap={{
-          base: '2',
-          md: '4',
+          base: 1,
+          lg: 2,
         }}
         >
           <GridItem
@@ -28,18 +28,30 @@ const Dashboard = () => {
           <GridItem
           colSpan={{
             base: 1,
+            lg:1,
+            xl:1,
+            md:2,
+            sm:2
           }}>
           <PriceSection/>
           </GridItem>
           <GridItem
           colSpan={{
             base: 1,
+            lg:1,
+            xl:1,
+            md:2,
+            sm:2
           }}>
           <Transactions/>
           </GridItem>
           <GridItem
           colSpan={{
             base: 1,
+            lg:1,
+            xl:1,
+            md:2,
+            sm:2
           }}>
           <Infocard text="Learn more about Loans – Keep your Bitcoin, access it’s value without selling it" title="Loans" 
           tag_color="p.purple" 
@@ -49,6 +61,10 @@ const Dashboard = () => {
           <GridItem
           colSpan={{
             base: 1,
+            lg:1,
+            xl:1,
+            md:2,
+            sm:2
           }}>
           <Infocard text="Learn more about our real estate, mortgage, and  corporate account services" title="Contact" tag_color="white"
           tag_text_color="p.purple"

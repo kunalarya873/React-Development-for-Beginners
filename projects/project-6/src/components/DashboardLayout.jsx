@@ -1,6 +1,5 @@
 import { Flex, Box, Container, useDisclosure } from "@chakra-ui/react";
 import Topnav from "./Topnav";
-import Sidenav from "./Sidenav";
 import SideDrawer from "./SideDrawer";
 
 const DashboardLayout = ({ title, children }) => {

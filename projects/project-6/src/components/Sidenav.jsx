@@ -3,6 +3,7 @@ import {HStack, Stack, Icon, Text, Heading, Box} from '@chakra-ui/react';
 import { RxDashboard } from 'react-icons/rx';
 import { BsArrowDownUp } from 'react-icons/bs';
 import {BiSupport} from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 const Sidenav = () => {
   const navLinks = [
     {
@@ -39,10 +40,10 @@ const Sidenav = () => {
       <Box mt="6" mx="3">
       {
       navLinks.map((nav) =>(
+        <Link to={nav.link} key={nav.text}>
         <HStack 
         borderRadius="md"
-        mx="3" 
-        key={nav.text} 
+        mx="3"  
         py="3" 
         px="4" 
         _hover={{
@@ -55,11 +56,13 @@ const Sidenav = () => {
           />
           <Text fontSize="14px" fontWeight="medium">{nav.text}</Text>
         </HStack>
+        </Link>
       ))
       }
       </Box>
       </Box>
       <Box mt="6" mx="3" mb="6">
+        <Link to="/support">
       <HStack 
         borderRadius="md"
         mx="3" 
@@ -74,6 +77,7 @@ const Sidenav = () => {
           />
           <Text fontSize="14px" fontWeight="medium">Support</Text>
         </HStack>
+        </Link>
         </Box>
       </Stack>
   )

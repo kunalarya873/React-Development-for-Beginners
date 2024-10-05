@@ -1,6 +1,10 @@
+import DashboardLayout from "../../components/DashboardLayout"
+import SupportCard from "./components/SupportCard"
 const Support = () => {
   return (
-    <div>Support</div>
+    <DashboardLayout title="Support">
+      <SupportCard />
+    </DashboardLayout>
   )
 }
 
