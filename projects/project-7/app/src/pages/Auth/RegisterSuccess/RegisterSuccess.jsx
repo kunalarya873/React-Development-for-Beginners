@@ -6,9 +6,10 @@ import { RiCheckboxCircleFill } from "react-icons/ri";
 
 const RegisterSuccess = () => {
   return (
+    <Container>
     <Center minH="100vh">
-      <Card>
-        <VStack>
+      <Card showCard={true}>
+        <VStack padding={6}>
             <Icon as={RiCheckboxCircleFill} boxSize="48px" color="#059669"/> 
             <Text fontWeight="medium" textStyle="h4" color="p.black">Successfull Registration</Text>
             <Text fontWeight="medium" textStyle="p2" color="black.60" textAlign="center" fontSize='14px' mt="16px">Hurray! You have successfully created your account. Enter the app to explore all it’s features.</Text>
@@ -16,6 +17,7 @@ const RegisterSuccess = () => {
         </VStack>
     </Card>
     </Center>
+    </Container>
   )
 }
 

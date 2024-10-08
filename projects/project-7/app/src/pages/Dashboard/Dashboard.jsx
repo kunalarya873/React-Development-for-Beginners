@@ -4,8 +4,26 @@ import PortfolioSection from "./components/PortfolioSection";
 import PriceSection from "./components/PriceSection";
 import Transactions from "./components/Transactions";
 import InfoCard from "./components/InfoCard";
+import { useEffect } from "react";
+import fetchExample from "../../api/query/exampleQuery";
+import { useQuery } from "react-query";
 
 const Dashboard = ({}) => {
+  const exampleQuery = useQuery({
+    queryKey: ["exampleQuery"],
+    queryFn: fetchExample,
+  })
+
+  if (exampleQuery.isError) {
+    return <div>Error</div>
+  }
+  if (exampleQuery.isLoading) {
+    return <div>Loading...</div>
+  }
+  useEffect(() => {
+    const data = fetchExample();
+    console.log(data);
+  }, [])
   return (
     <DashboardLayout title="Dashboard">
       <Grid

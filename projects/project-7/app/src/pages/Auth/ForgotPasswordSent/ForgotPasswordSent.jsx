@@ -35,7 +35,8 @@ const ForgotPassword = () => {
         <Link to="/signin">
         <Icon as={FaArrowLeft} mt="14px" fontSize="24px" />
         </Link>
-        <Text textStyle="h1" fontSize="32px" mt="16px">Forgot Pasword</Text>{" "}
+        <Text textStyle="h1" fontSize="32px" 
+        mt="16px">Forgot Pasword</Text>{" "}
         <Text textStyle="p2" color="black.60" mt="4" fontSize="14px">Enter your email address for which account you want to reset your password.
         </Text>
         <Formik
