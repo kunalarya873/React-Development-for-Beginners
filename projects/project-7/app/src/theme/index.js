@@ -83,6 +83,20 @@ export const theme = extendTheme(
         lineHeight: { base: "20px", md: "22px" },
       },
     },
+    p3: {
+      fontSize: {
+        base: "12px"
+      },
+      color: "p.black",
+      lineHeight: { base: "14px"},
+    },
+    p2: {
+      fontSize: {
+        base: "14px"
+      },
+      color: "p.black",
+      lineHeight: { base: "18px"},
+    },
 
     fontSizes: {
       xs: "12px",
@@ -98,7 +112,8 @@ export const theme = extendTheme(
       global: {
         // styles for the `body`
         body: {
-          bg: "#F3F3F7",
+          bg: "white",
+
         },
       },
     },

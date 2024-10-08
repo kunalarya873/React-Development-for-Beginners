@@ -3,6 +3,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Support from "./pages/Support/Support";
 import TransactionPage from "./pages/Transaction/Transaction";
+import Signup from "./pages/Auth/Signup/Signup";
+import Signin from "./pages/Auth/Signin/Signin";
+import ForgotPassword from "./pages/Auth/ForgotPassword/ForgotPassword";
+import RegisterEmailVerify from "./pages/Auth/RegisterEmailVerify/RegisterEmailVerify";
+import RegisterSuccess from "./pages/Auth/RegisterSuccess/RegisterSuccess";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,6 +21,28 @@ const router = createBrowserRouter([
     path: "/support",
     element: <Support />,
   },
+
+  {
+    path: "/signup",
+    element: <Signup/>,
+  },
+
+  {
+    path: "/signin",
+    element: <Signin/>,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword/>,
+  },
+  {
+    path: "/register-email-verify",
+    element: <RegisterEmailVerify/>,
+  },
+  {
+    path: "/register-success",
+    element: <RegisterSuccess/>,
+  }
 ]);
 
 function App() {
